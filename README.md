@@ -31,8 +31,8 @@ Welcome to **PicHub**, the edgy and vibrant platform where photography enthusias
 ## 🔧 Technologies Used
 
 - **Frontend**: React, Typescript, SASS
-- **Backend**: Node.js, Nest, JWT Authentication
-- **Database**: MongoDB
+- **Backend**: Node.js, Nest.js, JWT Authentication
+- **Database**: PostgreSQL
 - **Cloud Storage**: AWS S3 for image storage
 - **Other Tools**: Webpack, Babel, ESLint
 
