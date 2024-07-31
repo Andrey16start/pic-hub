@@ -30,6 +30,7 @@ Welcome to **PicHub**, the edgy and vibrant platform where photography enthusias
 
 ## 🔧 Technologies Used
 
+- **Node.js version**: v20.16.0
 - **Frontend**: React, Typescript, SASS
 - **Backend**: Node.js, Nest.js, JWT Authentication
 - **Database**: PostgreSQL
