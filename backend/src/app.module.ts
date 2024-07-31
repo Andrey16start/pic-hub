@@ -4,6 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 
 import { UsersModule } from './users/users.module';
 import { User } from './users/users.model';
+import { RolesModule } from './roles/roles.module';
+import { Role } from './roles/roles.model';
+import { UserRoles } from './roles/user-roles.model';
 
 
 @Module({
@@ -11,7 +14,6 @@ import { User } from './users/users.model';
   providers: [],
   imports: [
     ConfigModule.forRoot({
-      // envFilePath: '.env',
       envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     SequelizeModule.forRoot({
@@ -23,10 +25,13 @@ import { User } from './users/users.model';
       database: process.env.POSTGRES_DB,
       models: [
         User,
+        Role,
+        UserRoles,
       ],
       autoLoadModels: true,
     }),
     UsersModule,
+    RolesModule,
   ],
 })
 
