@@ -10,7 +10,7 @@ interface RoleCreationAttrs {
   description: string;
 }
 
-enum RoleType {
+export enum RoleType {
   user = "user",
   admin = "admin",
 }

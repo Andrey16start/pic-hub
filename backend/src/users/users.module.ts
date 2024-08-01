@@ -6,6 +6,7 @@ import { UsersService } from './users.service';
 import { User } from './users.model';
 import { Role } from 'src/roles/roles.model';
 import { UserRoles } from 'src/roles/user-roles.model';
+import { RolesModule } from 'src/roles/roles.module';
 
 
 @Module({
@@ -17,6 +18,7 @@ import { UserRoles } from 'src/roles/user-roles.model';
       Role,
       UserRoles,
     ]),
+    RolesModule,
   ],
 })
 export class UsersModule { }

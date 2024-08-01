@@ -18,5 +18,8 @@ import { UserRoles } from './user-roles.model';
       UserRoles,
     ]),
   ],
+  exports: [
+    RolesService,
+  ],
 })
 export class RolesModule { }
