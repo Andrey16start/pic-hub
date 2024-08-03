@@ -16,6 +16,13 @@ export enum RoleType {
 }
 const allRoleTypes = Object.values(RoleType);
 
+// TODO: find out solution how to correct typing it
+export const API_DOCS_ROLE_EXAMPLE = {
+  id: 1,
+  type: RoleType.user,
+  description: 'User role',
+}
+
 
 @Table({ tableName: 'roles' })
 export class Role extends Model<Role, RoleCreationAttrs> {

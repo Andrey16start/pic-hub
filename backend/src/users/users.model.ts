@@ -1,14 +1,24 @@
 import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescript";
+import { ApiProperty } from "@nestjs/swagger";
 
 import { Nullable } from "common/types/common.types";
-import { ApiProperty } from "@nestjs/swagger";
-import { Role } from "src/roles/roles.model";
+import { API_DOCS_ROLE_EXAMPLE, Role } from "src/roles/roles.model";
 import { UserRoles } from "src/roles/user-roles.model";
 
 
 interface UserCreationAttrs {
   email: string;
   password: string;
+}
+
+// TODO: find out solution how to correct typing it
+export const API_DOCS_USER_EXAMPLE = {
+  id: 1,
+  email: 'user@gmail.com',
+  password: '12345678',
+  isBanned: false,
+  banReason: null,
+  roles: [API_DOCS_ROLE_EXAMPLE],
 }
 
 
@@ -34,6 +44,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING })
   banReason: Nullable<string>;
 
+  @ApiProperty({ example: [API_DOCS_ROLE_EXAMPLE] })
   @BelongsToMany(() => Role, () => UserRoles)
   roles: Role[];
 }
