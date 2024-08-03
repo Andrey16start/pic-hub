@@ -11,7 +11,7 @@ Welcome to **PicHub**, the edgy and vibrant platform where photography enthusias
 - **Customizable Profile**: Show off your best work and build your portfolio. Personalize your profile and make it uniquely yours.
 - **Dynamic Feed**: Stay updated with the latest uploads, trending photos, and featured artists.
 
-## 🚀 Getting Started
+## 🚀 Getting Started (TODO:)
 
 1. **Clone the repository**: 
     ```bash
@@ -32,19 +32,9 @@ Welcome to **PicHub**, the edgy and vibrant platform where photography enthusias
 
 - **Node.js version**: v20.16.0
 - **Frontend**: React, Typescript, SASS
-- **Backend**: Node.js, Nest.js, JWT Authentication
-- **Database**: PostgreSQL
-- **Cloud Storage**: AWS S3 for image storage
-- **Other Tools**: Webpack, Babel, ESLint
-
-## 🤝 Contributing
-
-We welcome contributions! If you have ideas for new features or find bugs, feel free to open an issue or submit a pull request. Please read our [contributing guidelines](CONTRIBUTING.md) before getting started.
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
-
-## 🌍 Join the Community
-
-Follow us on [social media links] and join our growing community of photographers and creatives!
+- **Backend**: Node.js, Nest.js
+- **Authorization**: JWT Authentication, bcryptjs
+- **API Docs**: Swagger (swagger-ui-express)
+- **Database**: PostgreSQL, Sequelize
+- **Cloud Storage**: TODO: (I think will be AWS S3 for image storage)
+- **Other Tools**: TODO:
