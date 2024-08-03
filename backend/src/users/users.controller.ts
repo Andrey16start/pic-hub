@@ -30,6 +30,6 @@ export class UsersController {
   @ApiResponse({ status: 200, type: User })
   @Get(':id')
   getOne(@Param('id') id: number): Promise<User> {
-    return this.usersService.getUser(id);
+    return this.usersService.getUserById(id);
   }
 }

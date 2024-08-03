@@ -18,11 +18,19 @@ export class UsersService {
 
   async createUser(dto: CreateUserDto) {
     const newUser = await this.usersTable.create(dto);
+
+    // Add role
     const role = await this.roleService.getRole(RoleType.user);
+    await newUser.$set('roles', [role.id]);
+    // Reload with roles
+    const newUserWithRoles = await this.usersTable.findByPk(newUser.id, {
+      include: {
+        model: Role,
+        through: { attributes: [] },
+      },
+    })
 
-    await newUser.$set('roles', [role.id])
-
-    return newUser;
+    return newUserWithRoles;
   }
 
   async getAllUsers() {
@@ -36,9 +44,21 @@ export class UsersService {
     return users;
   }
 
-  async getUser(id: number) {
+  async getUserById(id: number) {
     const user = await this.usersTable.findOne({
       where: { id },
+      include: {
+        model: Role,
+        through: { attributes: [] },
+      },
+    });
+
+    return user;
+  }
+
+  async getUserByEmail(email: string) {
+    const user = await this.usersTable.findOne({
+      where: { email },
       include: {
         model: Role,
         through: { attributes: [] },
