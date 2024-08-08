@@ -10,6 +10,7 @@ import {
 import { Reflector } from "@nestjs/core";
 import { JwtService } from "@nestjs/jwt";
 import { Observable } from "rxjs";
+import { Request } from "express";
 
 import { ROLES_KEY } from "./roles-auth.decorator";
 import { RoleType } from "src/roles/roles.model";
@@ -34,7 +35,7 @@ export class RolesGuard implements CanActivate {
       if (!requiredRoles) {
         return true;
       }
-      const req = context.switchToHttp().getRequest();
+      const req = context.switchToHttp().getRequest<Request>();
       const authHeader = req.headers.authorization || '';
       const [bearer, token] = authHeader.split(' ');
 
