@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import * as bcrypt from 'bcryptjs';
 
 import { User } from './users.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,8 +17,12 @@ export class UsersService {
     private roleService: RolesService,
   ) { }
 
-  async createUser(dto: CreateUserDto) {
-    const newUser = await this.usersTable.create(dto);
+  async createUser(userDto: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(userDto.password, 12);
+    const newUser = await this.usersTable.create({
+      ...userDto,
+      password: hashedPassword,
+    });
 
     // Add role
     const role = await this.roleService.getRole(RoleType.user);
@@ -52,6 +57,10 @@ export class UsersService {
         through: { attributes: [] },
       },
     });
+
+    if (!user) {
+      throw new BadRequestException({ message: 'User not found!' });
+    }
 
     return user;
   }

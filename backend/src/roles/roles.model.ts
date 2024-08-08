@@ -32,7 +32,7 @@ export class Role extends Model<Role, RoleCreationAttrs> {
 
   @ApiProperty({ example: RoleType.user })
   @Column({ type: DataType.ENUM(...allRoleTypes), unique: true, allowNull: false })
-  type: string;
+  type: RoleType;
 
   @ApiProperty({ example: 'Administrator' })
   @Column({ type: DataType.STRING, allowNull: false })
