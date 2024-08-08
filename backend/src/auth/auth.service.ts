@@ -32,11 +32,7 @@ export class AuthService {
         HttpStatus.BAD_REQUEST,
       );
     }
-    const hashedPassword = await bcrypt.hash(userDto.password, 12);
-    const user = await this.userService.createUser({
-      email: userDto.email,
-      password: hashedPassword,
-    });
+    const user = await this.userService.createUser(userDto);
 
     return user;
   }
@@ -53,13 +49,16 @@ export class AuthService {
 
   private async _validateUser(userDto: CreateUserDto) {
     const user = await this.userService.getUserByEmail(userDto.email);
+
+    if (!user) {
+      throw new UnauthorizedException({ message: 'Incorrect email or password' });
+    }
     const passwordEquals = await bcrypt.compare(userDto.password, user.password);
 
-    if (user && passwordEquals) {
-      return user;
+    if (!passwordEquals) {
+      throw new UnauthorizedException({ message: 'Incorrect email or password' });
     }
-    throw new UnauthorizedException({
-      message: 'Incorrect email or password',
-    })
+
+    return user;
   }
 }
